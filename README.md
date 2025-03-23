@@ -25,9 +25,9 @@ La aplicación permite hacer búsquedas de:
       ```
    Asegúrate de tener XAMPP o un servidor local con PHP.
 
-Coloca los archivos en la carpeta del servidor (por ejemplo, htdocs en XAMPP).
+2. Coloca los archivos en la carpeta del servidor (por ejemplo, htdocs en XAMPP).
 
-Accede al proyecto desde tu navegador local: http://localhost/football-api-demo.
+3. Accede al proyecto desde tu navegador local: http://localhost/football-api-demo.
 
 ¿Cómo funciona?
 La aplicación realiza una solicitud GET a la API de TheSportsDB según el tipo de búsqueda (equipo, país o jugador). Los resultados se muestran dinámicamente en la página sin necesidad de recargar.
