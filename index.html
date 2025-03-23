@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Fútbol API</title>
+    <style>
+        /* Establecer el fondo de la página */
+        body {
+            background: url('fondo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenedor central */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+            border-radius: 10px;
+        }
+
+        /* Títulos */
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #FFDD00; /* Un color dorado para resaltar */
+        }
+
+        /* Estilo de los formularios */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #FFDD00;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #FFD700; /* Cambio de color al pasar el mouse */
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #FFDD00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <h2>Buscar equipos por país</h2>
+            <label for="pais">Ingresa el país en inglés:</label>
+            <input type="text" id="pais">
+            <button onclick="buscar('pais')">Buscar Equipos</button>
+        </div>
+
+        <div class="section">
+            <h2>Buscar equipo por nombre</h2>
+            <label for="equipo">Ingresa el nombre del equipo:</label>
+            <input type="text" id="equipo">
+            <button onclick="buscar('equipo')">Buscar Equipo</button>
+        </div>
+
+        <div class="section">
+            <h2>Buscar jugador por nombre</h2>
+            <label for="jugador">Ingresa el nombre del jugador:</label>
+            <input type="text" id="jugador">
+            <button onclick="buscar('jugador')">Buscar Jugador</button>
+        </div>
+
+        <div id="resultados"><h3>Resultados:</h3></div>
+    </div>
+
+    <script>
+        function buscar(tipo) {
+            let valor = document.getElementById(tipo).value;
+            if (valor.trim() === '') {
+                alert("Por favor, ingresa un valor válido.");
+                return;
+            }
+
+            let url = `backend.php?${tipo}=${encodeURIComponent(valor)}`;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("resultados").innerHTML = `<h3>Resultados:</h3>${data}`;
+                })
+                .catch(error => console.error("Error en la solicitud:", error));
+        }
+    </script>
+</body>
+</html>
